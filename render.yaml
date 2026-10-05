@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: fixit-campus
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: DB_PATH
+        value: data/fixit.sqlite
+    # To enable permanent persistence on Render with a persistent disk (Starter plan):
+    # disk:
+    #   name: fixit-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # envVars:
+    #   - key: DB_PATH
+    #     value: /var/data/fixit.sqlite
